@@ -27,7 +27,7 @@
         <div class="flex flex-1 flex-col lg:pl-64">
             @include('components.navbar')
 
-            <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <main class="flex-1 animate-fade-in p-4 sm:p-6 lg:p-8">
                 @include('components.alert')
                 @yield('content')
             </main>

@@ -10,11 +10,11 @@
 
 <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform bg-coffee-900 shadow-sidebar transition-transform duration-300 lg:translate-x-0">
     <div class="flex h-full flex-col">
-        <div class="flex items-center gap-3 border-b border-coffee-800 px-6 py-5">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-coffee-600 text-lg">☕</div>
+        <div class="flex items-center gap-3 border-b border-coffee-800/70 px-6 py-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-gradient text-lg shadow-glow">☕</div>
             <div>
                 <h1 class="font-display text-lg font-bold text-white">SelfBrew</h1>
-                <p class="text-xs text-coffee-400">Admin Panel</p>
+                <p class="text-xs font-medium uppercase tracking-wider text-accent-300">Admin Panel</p>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 
         <div class="border-t border-coffee-800 p-4">
             <div class="flex items-center gap-3 rounded-xl bg-coffee-800/50 px-3 py-3">
-                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-coffee-600 text-sm font-bold text-white">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-gradient text-sm font-bold text-white shadow-sm">
                     {{ strtoupper(substr(auth('admin')->user()->name, 0, 1)) }}
                 </div>
                 <div class="min-w-0 flex-1">

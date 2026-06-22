@@ -5,13 +5,32 @@
 @section('page-subtitle', 'Ringkasan operasional coffee shop')
 
 @section('content')
-<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 mb-8">
-    <x-stat-card title="Total Menu" :value="$totalMenu" icon="🍽️" />
-    <x-stat-card title="Total Kategori" :value="$totalCategory" icon="📂" />
-    <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="📋" />
-    <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="💳" />
-    <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="💰" />
-    <x-stat-card title="Pesanan Hari Ini" :value="\App\Models\Order::whereDate('created_at', today())->count()" icon="📅" />
+@php
+    $hour = (int) now()->format('H');
+    $greeting = $hour < 11 ? 'Selamat pagi' : ($hour < 15 ? 'Selamat siang' : ($hour < 19 ? 'Selamat sore' : 'Selamat malam'));
+@endphp
+
+<div class="mb-8 animate-fade-up overflow-hidden rounded-2xl bg-coffee-gradient p-6 text-white shadow-card sm:p-8">
+    <div class="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <p class="text-sm font-medium text-cream-200">{{ $greeting }}, selamat datang kembali</p>
+            <h2 class="mt-1 font-display text-2xl font-bold sm:text-3xl">{{ auth('admin')->user()->name }} ☕</h2>
+            <p class="mt-2 max-w-lg text-sm text-cream-100/80">Pantau performa coffee shop kamu hari ini — {{ now()->translatedFormat('l, d F Y') }}.</p>
+        </div>
+        <div class="shrink-0 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm ring-1 ring-white/15">
+            <p class="text-xs uppercase tracking-wider text-cream-200">Total Pendapatan</p>
+            <p class="mt-1 font-display text-2xl font-bold">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 mb-8 animate-fade-up">
+    <x-stat-card title="Total Menu" :value="$totalMenu" icon="🍽️" color="coffee" />
+    <x-stat-card title="Total Kategori" :value="$totalCategory" icon="📂" color="accent" />
+    <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="📋" color="blue" />
+    <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="💳" color="purple" />
+    <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="💰" color="green" />
+    <x-stat-card title="Pesanan Hari Ini" :value="\App\Models\Order::whereDate('created_at', today())->count()" icon="📅" color="rose" />
 </div>
 
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-8">
@@ -74,8 +93,16 @@
         @else
         <div class="space-y-3">
             @foreach($topMenus as $index => $menu)
-            <div class="flex items-center gap-4 rounded-xl bg-cream-50 p-4">
-                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-coffee-700 text-sm font-bold text-white">{{ $index + 1 }}</span>
+            @php
+                $rankClass = match($index) {
+                    0 => 'bg-gradient-to-br from-accent-300 to-accent-500 text-white shadow-glow',
+                    1 => 'bg-gradient-to-br from-coffee-200 to-coffee-400 text-white',
+                    2 => 'bg-gradient-to-br from-coffee-300 to-coffee-500 text-white',
+                    default => 'bg-coffee-100 text-coffee-700',
+                };
+            @endphp
+            <div class="flex items-center gap-4 rounded-xl bg-cream-50 p-4 transition hover:bg-cream-100">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-bold {{ $rankClass }}">{{ $index + 1 }}</span>
                 <div class="flex-1 min-w-0">
                     <p class="font-medium text-coffee-900 truncate">{{ $menu->menu_name }}</p>
                     <p class="text-xs text-coffee-500">{{ $menu->total_qty }} terjual</p>

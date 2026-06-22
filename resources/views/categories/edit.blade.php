@@ -4,7 +4,7 @@
 @section('page-title', 'Edit Kategori')
 
 @section('content')
-<div class="max-w-xl">
+<div class="max-w-3xl">
     <div class="card">
         <form action="{{ route('categories.update', $category) }}" method="POST">
             @csrf @method('PUT')

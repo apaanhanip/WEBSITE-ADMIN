@@ -24,7 +24,17 @@ class CategoryRequest extends FormRequest
                 Rule::unique('categories', 'name')->ignore($categoryId),
             ],
             'description' => ['nullable', 'string', 'max:500'],
+            'is_active' => ['required', 'boolean'],
+            'menu_ids' => ['nullable', 'array'],
+            'menu_ids.*' => ['integer', 'exists:menus,id'],
         ];
+    }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'is_active' => $this->boolean('is_active'),
+        ]);
     }
 
     public function messages(): array
@@ -32,6 +42,7 @@ class CategoryRequest extends FormRequest
         return [
             'name.required' => 'Nama kategori wajib diisi.',
             'name.unique' => 'Nama kategori sudah digunakan.',
+            'is_active.required' => 'Status kategori wajib dipilih.',
         ];
     }
 }

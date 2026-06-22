@@ -12,10 +12,10 @@
     </div>
     <div class="flex flex-wrap items-center gap-2 justify-end">
         <a href="{{ route('transactions.export-pdf', request()->query()) }}" class="btn-secondary">
-            📄 Export PDF
+            <x-icon name="download" class="h-4 w-4" /> Export PDF
         </a>
         <a href="{{ route('transactions.export-excel', request()->query()) }}" class="btn-primary">
-            📊 Export Excel
+            <x-icon name="download" class="h-4 w-4" /> Export Excel
         </a>
     </div>
 </div>

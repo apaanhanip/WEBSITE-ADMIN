@@ -11,7 +11,9 @@
 <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform bg-coffee-900 shadow-sidebar transition-transform duration-300 lg:translate-x-0">
     <div class="flex h-full flex-col">
         <div class="flex items-center gap-3 border-b border-coffee-800/70 px-6 py-5">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-gradient text-lg shadow-glow">☕</div>
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-gradient text-white shadow-glow">
+                <x-icon name="cup" class="h-6 w-6" />
+            </div>
             <div>
                 <h1 class="font-display text-lg font-bold text-white">SelfBrew</h1>
                 <p class="text-xs font-medium uppercase tracking-wider text-accent-300">Admin Panel</p>

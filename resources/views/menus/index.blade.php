@@ -33,7 +33,7 @@
             @if($menu->image)
                 <img src="{{ $menu->image_url }}" alt="{{ $menu->name }}" class="h-full w-full object-cover group-hover:scale-105 transition duration-300">
             @else
-                <div class="flex h-full items-center justify-center text-5xl opacity-30">☕</div>
+                <div class="flex h-full items-center justify-center text-coffee-300"><x-icon name="photo" class="h-12 w-12" /></div>
             @endif
             <span class="absolute top-3 right-3 badge {{ $menu->is_available ? 'badge-green' : 'badge-red' }}">
                 {{ $menu->is_available ? 'Tersedia' : 'Habis' }}

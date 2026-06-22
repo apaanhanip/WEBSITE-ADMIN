@@ -10,27 +10,34 @@
     $greeting = $hour < 11 ? 'Selamat pagi' : ($hour < 15 ? 'Selamat siang' : ($hour < 19 ? 'Selamat sore' : 'Selamat malam'));
 @endphp
 
-<div class="mb-8 animate-fade-up overflow-hidden rounded-2xl bg-coffee-gradient p-6 text-white shadow-card sm:p-8">
-    <div class="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+<div class="relative mb-8 animate-fade-up overflow-hidden rounded-2xl bg-coffee-gradient p-6 text-white shadow-card sm:p-8">
+    <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/5"></div>
+    <div class="pointer-events-none absolute -bottom-20 right-24 h-44 w-44 rounded-full bg-accent-400/10"></div>
+    <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
             <p class="text-sm font-medium text-cream-200">{{ $greeting }}, selamat datang kembali</p>
-            <h2 class="mt-1 font-display text-2xl font-bold sm:text-3xl">{{ auth('admin')->user()->name }} ☕</h2>
+            <h2 class="mt-1 font-display text-2xl font-bold sm:text-3xl">{{ auth('admin')->user()->name }}</h2>
             <p class="mt-2 max-w-lg text-sm text-cream-100/80">Pantau performa coffee shop kamu hari ini — {{ now()->translatedFormat('l, d F Y') }}.</p>
         </div>
-        <div class="shrink-0 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm ring-1 ring-white/15">
-            <p class="text-xs uppercase tracking-wider text-cream-200">Total Pendapatan</p>
-            <p class="mt-1 font-display text-2xl font-bold">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
+        <div class="flex shrink-0 items-center gap-4 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm ring-1 ring-white/15">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-white">
+                <x-icon name="cash" class="h-6 w-6" />
+            </div>
+            <div>
+                <p class="text-xs uppercase tracking-wider text-cream-200">Total Pendapatan</p>
+                <p class="mt-1 font-display text-2xl font-bold">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 mb-8 animate-fade-up">
-    <x-stat-card title="Total Menu" :value="$totalMenu" icon="🍽️" color="coffee" />
-    <x-stat-card title="Total Kategori" :value="$totalCategory" icon="📂" color="accent" />
-    <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="📋" color="blue" />
-    <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="💳" color="purple" />
-    <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="💰" color="green" />
-    <x-stat-card title="Pesanan Hari Ini" :value="\App\Models\Order::whereDate('created_at', today())->count()" icon="📅" color="rose" />
+    <x-stat-card title="Total Menu" :value="$totalMenu" icon="menu" color="coffee" />
+    <x-stat-card title="Total Kategori" :value="$totalCategory" icon="tag" color="accent" />
+    <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="clipboard" color="blue" />
+    <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="card" color="purple" />
+    <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="cash" color="green" />
+    <x-stat-card title="Pesanan Hari Ini" :value="\App\Models\Order::whereDate('created_at', today())->count()" icon="calendar" color="rose" />
 </div>
 
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-8">

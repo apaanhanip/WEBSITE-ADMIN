@@ -1,4 +1,4 @@
-@props(['title', 'value', 'icon' => '☕', 'color' => 'coffee'])
+@props(['title', 'value', 'icon' => 'cup', 'color' => 'coffee'])
 
 @php
     // Literal class strings so Tailwind's JIT scanner detects them.
@@ -20,8 +20,8 @@
             <p class="text-sm font-medium text-coffee-500">{{ $title }}</p>
             <p class="mt-2 truncate text-2xl font-bold text-coffee-900">{{ $value }}</p>
         </div>
-        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl shadow-sm transition duration-300 group-hover:scale-110 group-hover:-rotate-6 {{ $theme['icon'] }}">
-            {{ $icon }}
+        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl shadow-sm transition duration-300 group-hover:scale-110 {{ $theme['icon'] }}">
+            <x-icon :name="$icon" class="h-6 w-6" />
         </div>
     </div>
 </div>

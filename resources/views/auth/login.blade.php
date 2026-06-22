@@ -9,7 +9,9 @@
 
     <div class="relative z-10 w-full max-w-md animate-fade-up px-4">
         <div class="mb-8 text-center">
-            <div class="mx-auto mb-4 flex h-16 w-16 animate-float items-center justify-center rounded-2xl bg-accent-gradient text-3xl shadow-glow">☕</div>
+            <div class="mx-auto mb-4 flex h-16 w-16 animate-float items-center justify-center rounded-2xl bg-accent-gradient text-white shadow-glow">
+                <x-icon name="cup" class="h-8 w-8" />
+            </div>
             <h1 class="font-display text-3xl font-bold text-white">SelfBrew Admin</h1>
             <p class="mt-2 text-cream-200">Panel pengelola coffee shop</p>
         </div>

@@ -70,7 +70,7 @@
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#dc2626',
-                cancelButtonColor: '#6f4a2a',
+                cancelButtonColor: '#64748b',
                 confirmButtonText: 'Ya, hapus',
                 cancelButtonText: 'Batal'
             }).then(r => { if (r.isConfirmed) form.submit(); });

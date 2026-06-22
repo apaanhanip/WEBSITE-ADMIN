@@ -8,16 +8,10 @@
     ];
 @endphp
 
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform bg-coffee-900 shadow-sidebar transition-transform duration-300 lg:translate-x-0">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform border-r border-coffee-100 bg-white shadow-sidebar transition-transform duration-300 lg:translate-x-0">
     <div class="flex h-full flex-col">
-        <div class="flex items-center gap-3 border-b border-coffee-800/70 px-6 py-5">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-gradient text-white shadow-glow">
-                <x-icon name="cup" class="h-6 w-6" />
-            </div>
-            <div>
-                <h1 class="font-display text-lg font-bold text-white">SelfBrew</h1>
-                <p class="text-xs font-medium uppercase tracking-wider text-accent-300">Admin Panel</p>
-            </div>
+        <div class="flex items-center gap-2 border-b border-coffee-100 px-6 py-5">
+            <h1 class="font-display text-xl font-bold text-coffee-900">SelfBrew <span class="text-brand-600">Admin</span></h1>
         </div>
 
         <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4">
@@ -36,13 +30,13 @@
             @endforeach
         </nav>
 
-        <div class="border-t border-coffee-800 p-4">
-            <div class="flex items-center gap-3 rounded-xl bg-coffee-800/50 px-3 py-3">
-                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-gradient text-sm font-bold text-white shadow-sm">
+        <div class="border-t border-coffee-100 p-4">
+            <div class="flex items-center gap-3 rounded-xl bg-cream-50 px-3 py-3 ring-1 ring-coffee-100">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-sm font-bold text-white shadow-sm">
                     {{ strtoupper(substr(auth('admin')->user()->name, 0, 1)) }}
                 </div>
                 <div class="min-w-0 flex-1">
-                    <p class="truncate text-sm font-medium text-white">{{ auth('admin')->user()->name }}</p>
+                    <p class="truncate text-sm font-medium text-coffee-900">{{ auth('admin')->user()->name }}</p>
                     <p class="truncate text-xs text-coffee-400">{{ auth('admin')->user()->email }}</p>
                 </div>
             </div>

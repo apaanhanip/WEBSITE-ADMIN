@@ -5,44 +5,18 @@
 @section('page-subtitle', 'Ringkasan operasional coffee shop')
 
 @section('content')
-@php
-    $hour = (int) now()->format('H');
-    $greeting = $hour < 11 ? 'Selamat pagi' : ($hour < 15 ? 'Selamat siang' : ($hour < 19 ? 'Selamat sore' : 'Selamat malam'));
-@endphp
-
-<div class="relative mb-8 animate-fade-up overflow-hidden rounded-2xl bg-coffee-gradient p-6 text-white shadow-card sm:p-8">
-    <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/5"></div>
-    <div class="pointer-events-none absolute -bottom-20 right-24 h-44 w-44 rounded-full bg-accent-400/10"></div>
-    <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-            <p class="text-sm font-medium text-cream-200">{{ $greeting }}, selamat datang kembali</p>
-            <h2 class="mt-1 font-display text-2xl font-bold sm:text-3xl">{{ auth('admin')->user()->name }}</h2>
-            <p class="mt-2 max-w-lg text-sm text-cream-100/80">Pantau performa coffee shop kamu hari ini — {{ now()->translatedFormat('l, d F Y') }}.</p>
-        </div>
-        <div class="flex shrink-0 items-center gap-4 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm ring-1 ring-white/15">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-white">
-                <x-icon name="cash" class="h-6 w-6" />
-            </div>
-            <div>
-                <p class="text-xs uppercase tracking-wider text-cream-200">Total Pendapatan</p>
-                <p class="mt-1 font-display text-2xl font-bold">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 mb-8 animate-fade-up">
-    <x-stat-card title="Total Menu" :value="$totalMenu" icon="menu" color="coffee" />
+    <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="cash" color="brand" />
+    <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="card" color="blue" />
+    <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="clipboard" color="purple" />
+    <x-stat-card title="Total Menu" :value="$totalMenu" icon="menu" color="green" />
     <x-stat-card title="Total Kategori" :value="$totalCategory" icon="tag" color="accent" />
-    <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="clipboard" color="blue" />
-    <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="card" color="purple" />
-    <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="cash" color="green" />
     <x-stat-card title="Pesanan Hari Ini" :value="\App\Models\Order::whereDate('created_at', today())->count()" icon="calendar" color="rose" />
 </div>
 
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-8">
     <div class="card lg:col-span-2">
-        <h3 class="mb-4 text-lg font-semibold text-coffee-900">Penjualan Mingguan</h3>
+        <h3 class="mb-4 text-lg font-semibold text-coffee-900">Tren Penjualan (Mingguan)</h3>
         <canvas id="weeklySalesChart" height="120"></canvas>
     </div>
     <div class="card">
@@ -94,27 +68,24 @@
     </div>
 
     <div class="card">
-        <h3 class="mb-4 text-lg font-semibold text-coffee-900">Menu Terlaris</h3>
+        <h3 class="mb-4 text-lg font-semibold text-coffee-900">Produk Paling Laris</h3>
         @if($topMenus->isEmpty())
             <x-empty-state title="Belum ada data penjualan" />
         @else
-        <div class="space-y-3">
+        @php $maxQty = max(1, (int) $topMenus->max('total_qty')); @endphp
+        <div class="space-y-4">
             @foreach($topMenus as $index => $menu)
-            @php
-                $rankClass = match($index) {
-                    0 => 'bg-gradient-to-br from-accent-300 to-accent-500 text-white shadow-glow',
-                    1 => 'bg-gradient-to-br from-coffee-200 to-coffee-400 text-white',
-                    2 => 'bg-gradient-to-br from-coffee-300 to-coffee-500 text-white',
-                    default => 'bg-coffee-100 text-coffee-700',
-                };
-            @endphp
-            <div class="flex items-center gap-4 rounded-xl bg-cream-50 p-4 transition hover:bg-cream-100">
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-bold {{ $rankClass }}">{{ $index + 1 }}</span>
-                <div class="flex-1 min-w-0">
-                    <p class="font-medium text-coffee-900 truncate">{{ $menu->menu_name }}</p>
-                    <p class="text-xs text-coffee-500">{{ $menu->total_qty }} terjual</p>
+            <div>
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex min-w-0 items-center gap-3">
+                        <span class="text-sm font-bold text-coffee-400">#{{ $index + 1 }}</span>
+                        <p class="truncate font-medium text-coffee-800">{{ $menu->menu_name }}</p>
+                    </div>
+                    <span class="shrink-0 text-sm font-semibold text-brand-600">{{ $menu->total_qty }} Porsi</span>
                 </div>
-                <p class="text-sm font-semibold text-coffee-800">Rp {{ number_format($menu->total_sales, 0, ',', '.') }}</p>
+                <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-cream-100">
+                    <div class="h-full rounded-full bg-brand-gradient" style="width: {{ max(6, round($menu->total_qty / $maxQty * 100)) }}%"></div>
+                </div>
             </div>
             @endforeach
         </div>
@@ -127,27 +98,37 @@
 <script>
     const ctx = document.getElementById('weeklySalesChart');
     if (ctx) {
+        const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, '#f87171');
+        gradient.addColorStop(1, '#dc2626');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: @json($weeklySales['labels']),
                 datasets: [{
                     label: 'Pendapatan (Rp)',
                     data: @json($weeklySales['data']),
-                    borderColor: '#6f4a2a',
-                    backgroundColor: 'rgba(111, 74, 42, 0.1)',
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: '#8b5e34',
+                    backgroundColor: gradient,
+                    hoverBackgroundColor: '#dc2626',
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    maxBarThickness: 38,
                 }]
             },
             options: {
                 responsive: true,
                 plugins: { legend: { display: false } },
                 scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    },
                     y: {
                         beginAtZero: true,
+                        grid: { color: '#eef1f6' },
+                        border: { display: false },
                         ticks: {
+                            color: '#94a3b8',
                             callback: (v) => 'Rp ' + new Intl.NumberFormat('id-ID').format(v)
                         }
                     }

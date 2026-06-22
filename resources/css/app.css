@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-cream-50 text-coffee-900 antialiased;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-coffee-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-coffee-800 focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:ring-offset-2 disabled:opacity-50;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-coffee-200 bg-white px-4 py-2.5 text-sm font-semibold text-coffee-800 transition hover:bg-cream-100 focus:outline-none focus:ring-2 focus:ring-coffee-300 focus:ring-offset-2;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+    }
+
+    .form-input {
+        @apply w-full rounded-xl border border-coffee-200 bg-white px-4 py-2.5 text-sm text-coffee-900 placeholder-coffee-300 shadow-sm transition focus:border-coffee-500 focus:outline-none focus:ring-2 focus:ring-coffee-200;
+    }
+
+    .form-label {
+        @apply mb-1.5 block text-sm font-medium text-coffee-800;
+    }
+
+    .card {
+        @apply rounded-2xl border border-coffee-100 bg-white p-6 shadow-card;
+    }
+
+    .badge {
+        @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+    }
+
+    .badge-yellow {
+        @apply badge bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-blue {
+        @apply badge bg-blue-100 text-blue-800;
+    }
+
+    .badge-green {
+        @apply badge bg-green-100 text-green-800;
+    }
+
+    .badge-red {
+        @apply badge bg-red-100 text-red-800;
+    }
+
+    .table-modern {
+        @apply w-full text-left text-sm;
+    }
+
+    .table-modern thead {
+        @apply border-b border-coffee-100 bg-cream-100 text-xs uppercase tracking-wider text-coffee-600;
+    }
+
+    .table-modern th {
+        @apply px-4 py-3 font-semibold;
+    }
+
+    .table-modern td {
+        @apply border-b border-coffee-50 px-4 py-3;
+    }
+
+    .table-modern tbody tr:hover {
+        @apply bg-cream-50;
+    }
+
+    .nav-link {
+        @apply flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-coffee-300 transition hover:bg-coffee-800 hover:text-white;
+    }
+
+    .nav-link.active {
+        @apply bg-coffee-700 text-white shadow-sm;
+    }
+}

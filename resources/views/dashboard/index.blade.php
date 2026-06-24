@@ -21,12 +21,17 @@
     </div>
     <div class="card">
         <h3 class="mb-4 text-lg font-semibold text-coffee-900">Status Pesanan</h3>
-        <div class="space-y-3">
+        @php
+            $statusDots = ['pending' => 'bg-yellow-400', 'diproses' => 'bg-blue-500', 'selesai' => 'bg-emerald-500', 'dibatalkan' => 'bg-red-500'];
+        @endphp
+        <div class="space-y-2.5">
             @foreach(['pending' => 'Pending', 'diproses' => 'Diproses', 'selesai' => 'Selesai', 'dibatalkan' => 'Dibatalkan'] as $key => $label)
-            <div class="flex items-center justify-between rounded-xl bg-cream-50 px-4 py-3">
-                <span class="text-sm font-medium text-coffee-700">{{ $label }}</span>
-                <x-status-badge :status="$key" />
-                <span class="text-lg font-bold text-coffee-900">{{ $orderStatusSummary[$key] ?? 0 }}</span>
+            <div class="flex items-center justify-between rounded-xl bg-cream-50 px-4 py-3 transition hover:bg-cream-100">
+                <span class="flex items-center gap-2.5 text-sm font-medium text-coffee-700">
+                    <span class="h-2.5 w-2.5 shrink-0 rounded-full {{ $statusDots[$key] }}"></span>
+                    {{ $label }}
+                </span>
+                <span class="text-lg font-bold text-coffee-900">{{ (int) ($orderStatusSummary[$key] ?? 0) }}</span>
             </div>
             @endforeach
         </div>

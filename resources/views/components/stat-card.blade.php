@@ -20,7 +20,7 @@
     </div>
     <div class="min-w-0">
         <p class="text-xs font-semibold uppercase tracking-wide text-coffee-400">{{ $title }}</p>
-        <p class="mt-1 truncate text-2xl font-bold text-coffee-900">{{ $value }}</p>
+        <p class="mt-1 text-2xl font-bold text-coffee-900">{{ $value }}</p>
         @if($subtitle)
             <p class="mt-0.5 text-xs font-medium text-emerald-600">{{ $subtitle }}</p>
         @endif

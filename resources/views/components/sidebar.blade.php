@@ -10,8 +10,10 @@
 
 <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform border-r border-coffee-100 bg-white shadow-sidebar transition-transform duration-300 lg:translate-x-0">
     <div class="flex h-full flex-col">
-        <div class="flex items-center gap-2 border-b border-coffee-100 px-6 py-5">
-            <h1 class="font-display text-xl font-bold text-coffee-900">SelfBrew <span class="text-brand-600">Admin</span></h1>
+        <div class="flex items-center border-b border-coffee-100 px-6 py-5">
+            <a href="{{ route('dashboard') }}" aria-label="CŌKO">
+                <x-logo class="h-8 w-auto text-coffee-900" />
+            </a>
         </div>
 
         <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4">

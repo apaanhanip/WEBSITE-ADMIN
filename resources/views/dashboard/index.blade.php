@@ -5,7 +5,7 @@
 @section('page-subtitle', 'Ringkasan operasional coffee shop')
 
 @section('content')
-<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 mb-8 animate-fade-up">
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8 animate-fade-up">
     <x-stat-card title="Total Pendapatan" :value="'Rp '.number_format($totalRevenue, 0, ',', '.')" icon="cash" color="brand" />
     <x-stat-card title="Total Transaksi" :value="$totalTransaction" icon="card" color="blue" />
     <x-stat-card title="Total Pesanan" :value="$totalOrder" icon="clipboard" color="purple" />

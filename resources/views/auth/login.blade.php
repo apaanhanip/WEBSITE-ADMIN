@@ -10,11 +10,8 @@
         <div class="pointer-events-none absolute -bottom-32 -right-16 h-96 w-96 rounded-full bg-accent-500/20 blur-3xl"></div>
         <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 
-        <div class="relative z-10 flex items-center gap-3">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-white ring-1 ring-white/20 backdrop-blur">
-                <x-icon name="cup" class="h-6 w-6" />
-            </div>
-            <span class="font-display text-xl font-bold text-white">SelfBrew <span class="text-brand-300">Admin</span></span>
+        <div class="relative z-10 flex items-center">
+            <x-logo class="h-9 w-auto text-white" />
         </div>
 
         <div class="relative z-10 max-w-md">
@@ -33,17 +30,14 @@
             </ul>
         </div>
 
-        <p class="relative z-10 text-xs text-white/40">&copy; {{ date('Y') }} SelfBrew Admin. Self-Order Kiosk System.</p>
+        <p class="relative z-10 text-xs text-white/40">&copy; {{ date('Y') }} CŌKO Admin. Self-Order Kiosk System.</p>
     </div>
 
     {{-- Form panel --}}
     <div class="flex min-h-screen items-center justify-center bg-cream-50 px-4 py-12 lg:min-h-0">
         <div class="w-full max-w-md animate-fade-up">
-            <div class="mb-8 text-center lg:hidden">
-                <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-glow">
-                    <x-icon name="cup" class="h-7 w-7" />
-                </div>
-                <h1 class="font-display text-2xl font-bold text-coffee-900">SelfBrew <span class="text-brand-600">Admin</span></h1>
+            <div class="mb-8 flex justify-center lg:hidden">
+                <x-logo class="h-10 w-auto text-coffee-900" />
             </div>
 
             <div class="rounded-2xl border border-coffee-100 bg-white p-8 shadow-card">

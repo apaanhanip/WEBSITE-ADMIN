@@ -6,16 +6,16 @@
 
 @section('content')
 <div class="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-    <div class="card bg-gradient-to-r from-coffee-700 to-coffee-900 text-white">
-        <p class="text-coffee-200 text-sm">Total Transaksi (Filter)</p>
+    <div class="card bg-brand-gradient text-white">
+        <p class="text-sm text-white/80">Total Transaksi (Filter)</p>
         <p class="mt-1 text-3xl font-bold">Rp {{ number_format($totalAmount, 0, ',', '.') }}</p>
     </div>
     <div class="flex flex-wrap items-center gap-2 justify-end">
         <a href="{{ route('transactions.export-pdf', request()->query()) }}" class="btn-secondary">
-            📄 Export PDF
+            <x-icon name="download" class="h-4 w-4" /> Export PDF
         </a>
         <a href="{{ route('transactions.export-excel', request()->query()) }}" class="btn-primary">
-            📊 Export Excel
+            <x-icon name="download" class="h-4 w-4" /> Export Excel
         </a>
     </div>
 </div>

@@ -30,6 +30,7 @@
                     <th>Nama</th>
                     <th>Deskripsi</th>
                     <th>Jumlah Menu</th>
+                    <th>Status</th>
                     <th class="text-right">Aksi</th>
                 </tr>
             </thead>
@@ -39,7 +40,14 @@
                     <td>{{ $categories->firstItem() + $loop->index }}</td>
                     <td class="font-semibold text-coffee-900">{{ $category->name }}</td>
                     <td class="text-coffee-600 max-w-xs truncate">{{ $category->description ?? '-' }}</td>
-                    <td><span class="badge bg-coffee-100 text-coffee-800">{{ $category->menus_count }} menu</span></td>
+                    <td><span class="badge bg-coffee-100 text-coffee-700">{{ $category->menus_count }} menu</span></td>
+                    <td>
+                        @if($category->is_active)
+                            <span class="badge bg-green-100 text-green-700">Aktif</span>
+                        @else
+                            <span class="badge bg-coffee-100 text-coffee-500">Nonaktif</span>
+                        @endif
+                    </td>
                     <td class="text-right">
                         <div class="flex justify-end gap-2">
                             <a href="{{ route('categories.edit', $category) }}" class="btn-secondary py-1.5 px-3 text-xs">Edit</a>
@@ -70,7 +78,7 @@
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#dc2626',
-                cancelButtonColor: '#6f4a2a',
+                cancelButtonColor: '#64748b',
                 confirmButtonText: 'Ya, hapus',
                 cancelButtonText: 'Batal'
             }).then(r => { if (r.isConfirmed) form.submit(); });

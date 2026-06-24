@@ -4,7 +4,7 @@
 @section('page-title', 'Tambah Kategori')
 
 @section('content')
-<div class="max-w-3xl">
+<div>
     <div class="card">
         <form action="{{ route('categories.store') }}" method="POST">
             @csrf

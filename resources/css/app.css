@@ -80,4 +80,33 @@
     .nav-link.active {
         @apply bg-coffee-700 text-white shadow-sm;
     }
+
+    /* ---- Storefront (dark) theme ---- */
+    .shop-btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 transition hover:from-brand-400 hover:to-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-night-900 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .shop-btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-400;
+    }
+
+    .shop-card {
+        @apply rounded-2xl border border-white/10 bg-night-800 p-5 shadow-xl shadow-black/20;
+    }
+
+    .shop-input {
+        @apply w-full rounded-xl border border-white/10 bg-night-900 px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40;
+    }
+
+    .shop-label {
+        @apply mb-1.5 block text-sm font-medium text-slate-300;
+    }
+
+    .product-card {
+        @apply group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-night-800 transition hover:-translate-y-1 hover:border-brand-400/50 hover:shadow-2xl hover:shadow-brand-600/20;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+    }
 }

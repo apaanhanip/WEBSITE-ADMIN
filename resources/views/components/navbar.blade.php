@@ -17,7 +17,7 @@
 
         <div class="flex items-center gap-3">
             <span class="hidden text-sm text-coffee-500 sm:inline">{{ now()->translatedFormat('l, d F Y') }}</span>
-            <form action="{{ route('logout') }}" method="POST">
+            <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="btn-secondary text-red-700 hover:bg-red-50 hover:border-red-200">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

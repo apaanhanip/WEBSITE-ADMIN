@@ -11,7 +11,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         Admin::updateOrCreate(
-            ['email' => 'admin@selfbrew.coko'],
+            ['email' => 'admin@otp24hub.test'],
             [
                 'name' => 'Super Admin',
                 'password' => Hash::make('password'),
